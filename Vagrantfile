@@ -12,7 +12,8 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/focal64"
+  config.vm.box = "bytesguy/ubuntu-server-20.04-arm64"
+  config.vm.box_version = "1.0.0"
   config.vm.hostname = "dftd"
 
   # Disable automatic box update checking. If you disable this, then
@@ -50,11 +51,10 @@ Vagrant.configure("2") do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  config.vm.provider "qemu" do |vb|
-    vb.memory = "1024"
-    vb.name = "dftd"
-    vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
-    vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+  config.vm.provider "vmware_fusion" do |vb|
+    # vb.gui = true
+    vb.vmx["memsize"] = "1024"
+    vb.vmx["numvcpus"] = "1"
   end
 
   #
@@ -69,7 +69,7 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "../ansible/site.yml"
+    ansible.playbook = "ansible/site.yml"
     ansible.compatibility_mode = "2.0"
   end
 end
