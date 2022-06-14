@@ -18,5 +18,3 @@ Pull requests are not accepted right now, due to this being a repo containing th
 
 ## License
 This project uses an [MIT](https://opensource.org/licenses/MIT) license that you can find [here](LICENSE).
-
-https://customerconnect.vmware.com/downloads/get-download?downloadGroup=FUS-PUBTP-2021H1
